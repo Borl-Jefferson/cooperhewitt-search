@@ -6,7 +6,7 @@ plugins {
 
 group = 'org.jointheleague.cooperhewitt'
 version = '0.0.1-SNAPSHOT'
-description = 'A Spring Boot application that uses Cooper Hewitt, Smithsonian Design Museum's api to search through their collection with key terms.'
+description = 'A Spring Boot application that uses Cooper Hewitt, Smithsonian Design Museum's api to search through their collection with key terms.''
 
 java {
 	toolchain {
@@ -21,6 +21,8 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

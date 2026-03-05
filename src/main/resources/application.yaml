@@ -1,3 +1,5 @@
 spring:
   application:
     name: Cooperhewitt
+server:
+  port: 5000

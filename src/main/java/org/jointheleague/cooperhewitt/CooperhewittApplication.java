@@ -1,4 +1,4 @@
-package org.jointheleague.cooperhewitt.Cooperhewitt;
+package org.jointheleague.cooperhewitt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +8,7 @@ public class CooperhewittApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CooperhewittApplication.class, args);
+        System.out.print("web thing should be running");
 	}
 
 }

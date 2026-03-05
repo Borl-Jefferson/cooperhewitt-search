@@ -6,11 +6,11 @@ plugins {
 
 group = 'org.jointheleague.cooperhewitt'
 version = '0.0.1-SNAPSHOT'
-description = 'A Spring Boot application that uses Cooper Hewitt, Smithsonian Design Museum's api to search through their collection with key terms.''
+description = 'A Spring Boot application that uses Cooper Hewitt, Smithsonian Design Museum\'s api to search through their collection with key terms.'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(25)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 

@@ -7,8 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CooperhewittApplication {
 
 	public static void main(String[] args) {
+		System.out.println("web thing about to be running");
 		SpringApplication.run(CooperhewittApplication.class, args);
-        System.out.print("web thing should be running");
+        System.out.println("web thing should be running");
 	}
 
 }

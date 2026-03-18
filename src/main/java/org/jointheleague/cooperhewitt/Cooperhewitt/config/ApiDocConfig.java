@@ -15,9 +15,9 @@ public class ApiDocConfig {
                 .info(new Info()
                         .title("Cooper Hewitt API")
                         .version("1.0")
-                        .contact(new Contact()
+                        /*.contact(new Contact()
                                 .name("Matt Freedman")
                                 .url("www.jointheleague.org")
-                                .email("matt.freedman@jointheleague.org")));
+                                .email("matt.freedman@jointheleague.org"))*/);
     }
 }

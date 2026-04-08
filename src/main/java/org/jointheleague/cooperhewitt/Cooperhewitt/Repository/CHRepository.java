@@ -1,9 +1,13 @@
 package org.jointheleague.cooperhewitt.Cooperhewitt.Repository;
 
+import io.swagger.v3.core.util.Json;
 import org.springframework.graphql.client.HttpGraphQlClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 @Repository
 public class CHRepository {
@@ -28,16 +32,19 @@ public class CHRepository {
                 .build();
 
 // Perform requests with graphQlClient...
+ArrayList<LinkedHashMap> ar = graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
+        .retrieve("object")
+        .toEntity(ArrayList.class)
+        .block();
 
+        System.out.println(ar.size());
+       // System.out.println(ar.get(3).get(ar.get(0).keySet()));
 
-        System.out.println(
-                graphQlClient.document("{object(description:\""+q+"\"){title,description}}")
-                        .retrieve("object")
-                        .toEntity(Object.class)
-                        .block()
-        );
-
-        return "fin";
+for (Object x : ar.get(3).keySet()) {
+    ArrayList<LinkedHashMap> list = (ArrayList<LinkedHashMap>) ar.get(3).get(x);
+    System.out.println("- "+ar+"\n"+list+"\n"+list.get(0).get("value"));
+}
+        return ar.toString();
     }
 
 }

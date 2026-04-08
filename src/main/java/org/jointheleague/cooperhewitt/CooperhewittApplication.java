@@ -9,7 +9,7 @@ public class CooperhewittApplication {
 	public static void main(String[] args) {
 		System.out.println("web thing about to be running");
 		SpringApplication.run(CooperhewittApplication.class, args);
-        System.out.println("web thing should be running at: http://localhost:5000");
+        System.out.println("web thing should be running at: http://localhost:5000\nhttp://localhost:5000/searchCHResults?q=spoon");
 	}
 
 }

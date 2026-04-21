@@ -1,6 +1,7 @@
 package org.jointheleague.cooperhewitt.Cooperhewitt.Repository;
 
 import io.swagger.v3.core.util.Json;
+import org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.ChResponse;
 import org.springframework.graphql.client.HttpGraphQlClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,7 @@ public class CHRepository {
     //private static final String baseUrl = "https://api.cooperhewitt.org/?query={object(title:\"spoon\"){title,description}}";
     private static final String baseUrl = "https://api.cooperhewitt.org";
     WebClient webClient = WebClient.create(baseUrl);
-    HttpGraphQlClient graphQlClient = HttpGraphQlClient.create(webClient);
+    //HttpGraphQlClient graphQlClient = HttpGraphQlClient.create(webClient);
 
     public CHRepository(){
         /*webClient = WebClient
@@ -26,25 +27,26 @@ public class CHRepository {
     }
 
     public String getResults(String q){
+        String out;
+ArrayList<ChResponse> chr = new ArrayList<ChResponse>();
 
         HttpGraphQlClient graphQlClient = HttpGraphQlClient
                 .builder(webClient)
                 .build();
-
 // Perform requests with graphQlClient...
-ArrayList<LinkedHashMap> ar = graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
+//ArrayList<ChResponse> ar =
+     System.out.println((
+                graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
         .retrieve("object")
-        .toEntity(ArrayList.class)
-        .block();
+                 .toEntity(Object.class)
+        .block()).getClass());
 
-        System.out.println(ar.size());
-       // System.out.println(ar.get(3).get(ar.get(0).keySet()));
+        /*System.out.println(ar.size());
 
-for (Object x : ar.get(3).keySet()) {
-    ArrayList<LinkedHashMap> list = (ArrayList<LinkedHashMap>) ar.get(3).get(x);
-    System.out.println("- "+ar+"\n"+list+"\n"+list.get(0).get("value"));
-}
-        return ar.toString();
+        for(int i = 0; i<ar.size(); i++){
+            System.out.println("-- "+ar.get(i).getData().getObject().get(0).getDescription());
+        }*/
+        return "good";
     }
 
 }

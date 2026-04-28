@@ -19,17 +19,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Data {
 
     @JsonProperty("object")
-    private List<org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.Object> object;
+    private List<ChObject> object;
     @JsonIgnore
     private Map<String, java.lang.Object> additionalProperties = new LinkedHashMap<String, java.lang.Object>();
 
     @JsonProperty("object")
-    public List<org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.Object> getObject() {
+    public List<ChObject> getObject() {
         return object;
     }
 
     @JsonProperty("object")
-    public void setObject(List<org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.Object> object) {
+    public void setObject(List<ChObject> object) {
         this.object = object;
     }
 

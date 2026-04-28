@@ -1,7 +1,10 @@
 package org.jointheleague.cooperhewitt.Cooperhewitt.Repository;
 
+import com.apollographql.java.client.ApolloClient;
 import io.swagger.v3.core.util.Json;
+import org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.ChObject;
 import org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.ChResponse;
+import org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.Data;
 import org.springframework.graphql.client.HttpGraphQlClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
@@ -10,43 +13,50 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+
 @Repository
 public class CHRepository {
 
+    ApolloClient client = new ApolloClient.Builder()
+            .serverUrl("https://api.cooperhewitt.org")
+  .build();
+
     //private final WebClient webClient;
     //private static final String baseUrl = "https://api.cooperhewitt.org/?query={object(title:\"spoon\"){title,description}}";
-    private static final String baseUrl = "https://api.cooperhewitt.org";
-    WebClient webClient = WebClient.create(baseUrl);
+
     //HttpGraphQlClient graphQlClient = HttpGraphQlClient.create(webClient);
 
     public CHRepository(){
-        /*webClient = WebClient
-                .builder()
-                .baseUrl(baseUrl)
-                .build();*/
+
+
     }
 
-    public String getResults(String q){
-        String out;
-ArrayList<ChResponse> chr = new ArrayList<ChResponse>();
-
-        HttpGraphQlClient graphQlClient = HttpGraphQlClient
+    public String getResults(String q) {
+        /*HttpGraphQlClient graphQlClient = HttpGraphQlClient
                 .builder(webClient)
                 .build();
-// Perform requests with graphQlClient...
-//ArrayList<ChResponse> ar =
-     System.out.println((
-                graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
-        .retrieve("object")
-                 .toEntity(Object.class)
-        .block()).getClass());
+        ArrayList<String> chr =
+                graphQlClient.document("{object(title:\"" + q + "\"){title,description}}")
+                .retrieve("object")
+                .toEntity(ArrayList.class)
+                .block();*/
 
-        /*System.out.println(ar.size());
+        client.query(new MyQuery()).enqueue(response -> {
+            if (response.data != null) {
+                // Handle (potentially partial) data
+                System.out.println(response.data);
+            } else {
+                // Something wrong happened
+                if (response.exception != null) {
+                    // Handle non-GraphQL errors, e.g. network issues
+                    response.exception.printStackTrace();
+                } else {
+                    // Handle GraphQL errors in response.errors
+                    System.out.println(response.getErrors().get(0));
+                }
+            }
+        });
 
-        for(int i = 0; i<ar.size(); i++){
-            System.out.println("-- "+ar.get(i).getData().getObject().get(0).getDescription());
-        }*/
         return "good";
     }
-
 }

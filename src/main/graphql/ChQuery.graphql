@@ -1,0 +1,11 @@
+https://www.apollographql.com/docs/kotlin?utm_source=github&utm_medium=apollographql_apollo-kotlin&utm_campaign=readme
+https://apollographql.github.io/apollo-kotlin-java-support/welcome.html#the-java-client
+https://apidocs.cooperhewitt.org/the-api/#get-all-objects
+
+query ChQuery($id: String!) {
+  item(id: $id) {
+    id
+    name
+    appearsIn
+  }
+}

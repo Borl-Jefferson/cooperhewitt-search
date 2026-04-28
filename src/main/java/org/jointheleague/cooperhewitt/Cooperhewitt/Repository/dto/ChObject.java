@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "description"
 })
 @Generated("jsonschema2pojo")
-public class Object {
+public class ChObject {
 
     @JsonProperty("title")
     private List<Title> title;
@@ -59,7 +59,7 @@ public class Object {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Object.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(ChObject.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("title");
         sb.append('=');
         sb.append(((this.title == null)?"<null>":this.title));

@@ -37,7 +37,7 @@ public class CHRepository {
                 .toEntity(ChResponse.class)
                 .block();//new ArrayList<ChResponse>();
 
-System.out.println(chr.toString();
+System.out.println(chr.toString());
 
 // Perform requests with graphQlClient...
 //ArrayList<ChResponse> ar =

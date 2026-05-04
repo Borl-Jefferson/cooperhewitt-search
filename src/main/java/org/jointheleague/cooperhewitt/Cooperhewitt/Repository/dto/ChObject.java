@@ -13,48 +13,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "title",
-        "description"
+        "title"
 })
 @Generated("jsonschema2pojo")
 public class ChObject {
 
-    @JsonProperty("title")
-    private List<Title> title;
-    @JsonProperty("description")
-    private List<Description> description;
-    @JsonIgnore
-    private Map<String, java.lang.Object> additionalProperties = new LinkedHashMap<String, java.lang.Object>();
+   // @JsonProperty("title")
+   // private List<String> title;
 
     @JsonProperty("title")
-    public List<Title> getTitle() {
-        return title;
+    public String getTitle() {
+        return "title";
     }
 
     @JsonProperty("title")
-    public void setTitle(List<Title> title) {
-        this.title = title;
+    public void setTitle(List<String> title) {
+        //this.title = title;
     }
 
-    @JsonProperty("description")
-    public List<Description> getDescription() {
-        return description;
-    }
-
-    @JsonProperty("description")
-    public void setDescription(List<Description> description) {
-        this.description = description;
-    }
-
-    @JsonAnyGetter
-    public Map<String, java.lang.Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, java.lang.Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
     @Override
     public String toString() {
@@ -62,15 +38,7 @@ public class ChObject {
         sb.append(ChObject.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("title");
         sb.append('=');
-        sb.append(((this.title == null)?"<null>":this.title));
-        sb.append(',');
-        sb.append("description");
-        sb.append('=');
-        sb.append(((this.description == null)?"<null>":this.description));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+       // sb.append(((this.title == null)?"<null>":this.title));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

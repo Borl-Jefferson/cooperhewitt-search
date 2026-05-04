@@ -32,12 +32,12 @@ public class CHRepository {
         HttpGraphQlClient graphQlClient = HttpGraphQlClient
                 .builder(webClient)
                 .build();
-        ChObject chr = graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
+        ChResponse chr = graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
                 .retrieve("data")
-                .toEntity(ChObject.class)
+                .toEntity(ChResponse.class)
                 .block();//new ArrayList<ChResponse>();
 
-System.out.println(chr.getTitle().get(0).getValue());
+System.out.println(chr.toString();
 
 // Perform requests with graphQlClient...
 //ArrayList<ChResponse> ar =

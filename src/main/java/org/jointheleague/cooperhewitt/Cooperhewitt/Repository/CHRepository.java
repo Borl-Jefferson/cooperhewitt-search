@@ -28,28 +28,25 @@ public class CHRepository {
     }
 
     public String getResults(String q){
-        String out;
+
         HttpGraphQlClient graphQlClient = HttpGraphQlClient
                 .builder(webClient)
                 .build();
-        ChResponse chr = graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
+        ArrayList<LinkedHashMap> chr = graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
                 .retrieve("data")
-                .toEntity(ChResponse.class)
-                .block();//new ArrayList<ChResponse>();
+                .toEntity(ArrayList.class)
+                .block();
 
-System.out.println(chr.toString());
-
-// Perform requests with graphQlClient...
-//ArrayList<ChResponse> ar =
-      //  System.out.println(chr.get(0).getClass());
-
-        /*System.out.println(ar.size());
-
-        for(int i = 0; i<ar.size(); i++){
-            System.out.println("-- "+ar.get(i).getData().getObject().get(0).getDescription());
-        }*/
+        for(int i = 0; i<chr.size(); i++){
+            System.out.println("\n\n - "+chr.get(i));
+        }
 
         return "good";
+    }
+
+    private String[] parse(String in){
+        String date = " ";
+        return null;
     }
 
 }

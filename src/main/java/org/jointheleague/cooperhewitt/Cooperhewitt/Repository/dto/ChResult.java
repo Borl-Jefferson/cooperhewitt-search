@@ -5,11 +5,11 @@ public class ChResult{
     String title = " unset ";
     String desc = "unset ";
 
-    /*public ChResult(String date, String title, String desc){
+    public ChResult(String date, String title, String desc){
         this.date=date;
         this.title=title;
         this.desc=desc;
-    }*/
+    }
 
     public String getDate(){
         return date;
@@ -21,6 +21,8 @@ public class ChResult{
         return desc;
     }
 
+
+/*
     public void setDate(String in){
         date = in;
     }
@@ -29,5 +31,9 @@ public class ChResult{
     }
     public void setDesc(String in){
         desc = in;
+    }
+*/
+    public void printAll(){
+        System.out.println("ChResult | date: "+date+", title: "+title+", desc: "+desc);
     }
 }

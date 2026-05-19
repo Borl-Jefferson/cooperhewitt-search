@@ -3,6 +3,7 @@ package org.jointheleague.cooperhewitt.Cooperhewitt.Repository;
 import io.swagger.v3.core.util.Json;
 import org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.ChObject;
 import org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.ChResponse;
+import org.jointheleague.cooperhewitt.Cooperhewitt.Repository.dto.ChResult;
 import org.springframework.graphql.client.HttpGraphQlClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
@@ -32,21 +33,44 @@ public class CHRepository {
         HttpGraphQlClient graphQlClient = HttpGraphQlClient
                 .builder(webClient)
                 .build();
-        ArrayList<LinkedHashMap> chr = graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
-                .retrieve("data")
+        ArrayList<Object> res = graphQlClient.document("{object(title:\""+q+"\"){title,description}}")
+                .retrieve("object")
                 .toEntity(ArrayList.class)
                 .block();
-
-        for(int i = 0; i<chr.size(); i++){
-            System.out.println("\n\n - "+chr.get(i));
+ArrayList<ChResult> chr = new ArrayList<ChResult>();
+        for(int i = 0; i<res.size(); i++){
+            chr.add(parse(res.get(i).toString()));
         }
 
+        for(int i = 0; i<chr.size(); i++){
+            chr.get(i).printAll();
+        }
         return "good";
     }
 
-    private String[] parse(String in){
-        String date = " ";
-        return null;
+    /*{title=[{date=[{from=2023, to=2023, value=2023-07-29}], language=ENGLISH, type=Descriptive title, value=Spoon}],
+    description=[{type=general description, value=Pointed oval bowl, partly fluted then twisted stem terminating in acanthus scrolls below the circular crusher terminal.}]}
+     */
+
+    private ChResult parse(String in){
+        String date = "Not Provided";
+        String desc = "broken";
+        String parts[] = in.split("description=");
+        String titleVals[] = parts[0].split("type=Descriptive title, ");
+        try {
+            date = titleVals[0].substring(titleVals[0].indexOf("value=") + 6, titleVals[0].indexOf("}"));
+        }catch (Exception e){
+        }
+        String title = titleVals[1].substring(titleVals[1].indexOf("value=")+6, titleVals[1].indexOf("}"));
+        try {
+            desc = parts[1].substring(parts[1].indexOf("value=") + 6, parts[1].indexOf("}"));
+        }catch (Exception e){
+            desc = parts[1].substring(0, parts[1].indexOf("}"));
+        }
+
+
+
+        return new ChResult(date, title, desc);
     }
 
 }
